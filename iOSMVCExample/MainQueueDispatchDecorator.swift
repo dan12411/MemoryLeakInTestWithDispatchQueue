@@ -29,7 +29,7 @@ func guarenteeMainThread(_ work: @escaping () -> Void) {
   }
 }
 
-extension MainQueueDispatchDecorator where T == Service {
+extension MainQueueDispatchDecorator: Service where T == Service {
   func load(completion: @escaping (String) -> Void) {
     decoratee.load { [weak self] result in
       self?.dispatch { completion(result) }
